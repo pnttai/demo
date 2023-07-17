@@ -1,0 +1,48 @@
+table th,table td{
+  border: 1px solid black;
+  text-align: center;
+  padding: 2px 40px;
+  font-size: larger;
+  background-color: aquamarine;
+}
+table th{
+  color: black;
+}
+table {
+  border-collapse: collapse;
+}
+.App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input{
+  padding: 5px;
+  margin-right: 5px;
+}
+.addFrom button {
+  width: 100px;
+  padding: 5px;
+  color: beige;
+  background-color: green;
+}
+.addFrom button:hover{
+  cursor: pointer;
+  background-color: rgb( 7,62,7 );
+}
+.edit{
+  color: white;
+  margin-right: 5px;
+  background-color: blue;
+}
+.edit:hover{
+  background-color: rgb( 7,7,72 );
+}
+.delete{
+  color: white;
+  background-color: red;
+}
+.delete:hover{
+  background-color: rgb(108, 8, 8);
+}
