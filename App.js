@@ -4,7 +4,6 @@ import './App.css';
 import axios from 'axios';
 import AddProductForm from './AddProductForm';
 import EditProductForm from './EditProductFrom';
-
 function App() {
 
   const [datas, setDatas] = useState([]);
@@ -35,7 +34,7 @@ function App() {
               <tbody>
               {
                 datas.map((d,i)=>(
-                  updateState === d.id? <EditProductForm d={d} datas={datas} setDatas={setDatas}/>:
+                  updateState === d.id? <EditProductForm  product={d} datas={datas} setDatas={setDatas}/>:
                   <tr key={i}>
                     <td>{d.id}</td>
                     <td>{d.name}</td>
