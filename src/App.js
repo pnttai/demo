@@ -6,21 +6,23 @@ import AddProductForm from './AddProductForm';
 import EditProductForm from './EditProductFrom';
 function App() {
 
-  const [datas, setDatas] = useState([]);
+  const [data, setData] = useState([]);
   const [updateState,setUpdateState] = useState(-1);
   useEffect (()=>{
   axios.get('https://dev.crush.asia/coffee-core/guest/category/getListProductGroupingByCategory?tenantId=1')
   .then((response) => {
-    setDatas(response.data);
+    setData(response.data);
   })
     .catch(error => console.log(error))
   },[]);
-    
+    const AddProduct=(e) =>{
+
+    }
 
   return (
     <div className="App">
-       <AddProductForm setDatas={setDatas}/>
-          <form  onSubmit={handleUpdate}>
+       <AddProductForm setData={setData}/>
+          <form >
             <table> 
               <thead>
                 <tr>
@@ -31,18 +33,18 @@ function App() {
                 <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
               {
-                datas.map((d,i)=>(
-                  updateState === d.id? <EditProductForm  product={d} datas={datas} setDatas={setDatas}/>:
+                data.map((d,i)=>(
+                  updateState === d.id? <EditProductForm  product={d} data={data} setData={setData}/>:
                   <tr key={i}>
                     <td>{d.id}</td>
                     <td>{d.name}</td>
                     <td>{d.price}</td>
                     <td>{d.quantity}</td>
                     <td>
-                      <button onClick={()=>hanleEdit(d.id)} className='edit' type='button'>Edit</button>
-                      <button onClick={()=>hanleDelete(d.id)} className='delete' type='button'  >Delete</button>
+                      <button onClick={()=>handleEdit(d.id)} className='edit' type='button'>Edit</button>
+                      <button onClick={()=>handleDelete(d.id)} className='delete' type='button'  >Delete</button>
                     </td>
                   </tr>
                 )
@@ -54,25 +56,11 @@ function App() {
       
         </div>
   )
-  function hanleDelete(id){
-    const updateState = datas.filter((d)=>id!==d.id)
-    setDatas(updateState)
+  function handleDelete(id){
+    const updateState = data.filter((d)=>id!==d.id)
+    setData(updateState)
 }
-function handleUpdate (e){  
-  e.preventDefault();
-  const name = e.target.elements.name.value;
-  const price = e.target.elements.price.value;
-  const quantity = e.target.elements.quantity.value;
-  const update= datas.map(d=>d.id===updateState ? {...d,name:name,price:price,quantity:quantity}:d)
- 
-  if(name ==='' || price==='' ||quantity===''){
-    alert('nhập đẩy đủ thông tin cần sửa');
-   }
-   else{
-  setUpdateState(-1)
-  setDatas(update);  }
-}
-function hanleEdit (id){
+function handleEdit (id){
   setUpdateState(id);
 }
    }

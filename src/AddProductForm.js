@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './App.css';
 import {nanoid} from 'nanoid';
-function AddProductForm  ({setDatas}){
+function AddProductForm  ({setData}){
   const [newTitle,setNewTitle] = useState("");
     const [newPrice, setNewPrice] = useState(20000);
     const [newQuantity, setNewQuantity] = useState(1);
@@ -14,9 +14,9 @@ function AddProductForm  ({setDatas}){
       quantity:newQuantity
     }
     if(newMember.name ==='' || newMember.price ==='' ||newMember.quantity===''){
-      alert('nhap lai'); }
+      alert('retype'); }
      else{
-      setDatas(prevDatas=>prevDatas.concat(newMember));}
+      setData(prevData=>prevData.concat(newMember));}
       setNewTitle('');
   }
     return(
